@@ -62,3 +62,12 @@ APIs which specify interfaces that programs can use to talk to and instruct the 
 - docker start : to start a container 
 - docker exec -it id_container command(that you want to execute inside the container)
 - docker container run -d (img) : run a container in the background 
+- docker history img(name image) : display some inforamation like tags ...
+- docker login : to login in your account
+- docker logout : to logout from your account
+- docker build path_to_dockerfile : to build an image (the name image will be none)
+- docker build --tag `tag like you want` path_to_dockerfile : to build an image with a tag (the name image will be the tag)
+
+- docker build -f file.Dockerfile -t test2 path_where : if you create a docker file wihout using the default name `Dockerfile` the meaining of flags -f and -t :
+					-f => --file
+					-t => --tag

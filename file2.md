@@ -14,6 +14,9 @@
 
 
 # Docker Tags:
-    Docker tags are refrence to docker images
+    Docker tags are refrence to docker images 
 
-
+# Dockerfile
+    Docker can build images automatically by reading the instrucations from a Dockerfile.
+    A Dockerfile is a text document that contains all the commandsa user could call on the command line to assemble an image
+    
