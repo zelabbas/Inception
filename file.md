@@ -71,3 +71,28 @@ APIs which specify interfaces that programs can use to talk to and instruct the 
 - docker build -f file.Dockerfile -t test2 path_where : if you create a docker file wihout using the default name `Dockerfile` the meaining of flags -f and -t :
 					-f => --file
 					-t => --tag
+# volumes:
+	- docker container run -d --name (name) -e MARIADB_ROOT_PASSWORD=1234 -v (the name you want for the volume):/var/lib/mysql  mariadb
+
+	- docker exec -it (id_or_name container) mariadb -u root -p : to connect in to mariadb 
+	- docker volume ls : to list all existe volumes
+	- docker volume create (name_for_volume) : to create a new volume
+	- docker volume inspect   (name_for_volume) : to inspect a volume and see the information
+
+# Bind Mounting:
+	- docker container run -it --name alpine -v ${path}:/mounted_folder alpine : mounted_folder is the name that will be in the container and path is the path to files that will be share it
+
+# DOCKER NETWORKING
+	docker networking is primarily used to establish communication between Docker containers and the outside world via the host machine where the Docker daemon is running 
+
+- docker network create --driver bridge n1 : this is for create a network called n1
+- docker run --network=n1 -d -it ubuntu : to assigne the netwrok n1 
+- docker netwrok disconnect n2 id_container : to disconnect from a newtwork 
+_ docker network connect n1  id_container : to connect into n1 network
+
+# Docker Compose:
+	docker compose is a tool for defining and running multi-container Docker applications.
+	with compose you use a YAML file to configure your application's services
+	==> the meaning of YAML is : YET another Markup Language
+
+-  docker-compose -v : to the version of docker-compose
