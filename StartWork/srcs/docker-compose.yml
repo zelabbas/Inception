@@ -10,13 +10,18 @@ services:
     restart: always
     volumes:
       - mariadb_volume:/var/lib/mysql
-    networks:
-      - my_network
     ports:
       - '3306'
+    networks:
+      - my_network
 
 volumes:
   mariadb_volume:
+    driver: local
+    driver_opts:
+        device: /Users/zelabbas/Desktop/data_base
+        type: none
+        o: bind
 
 networks:
   my_network:

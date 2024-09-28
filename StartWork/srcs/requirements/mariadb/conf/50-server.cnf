@@ -1,0 +1,14 @@
+# The MariaDB server
+
+[mysqld]
+# Directory where you want to put your data
+datadir = /var/lib/mysql
+socket  = /run/mysqld/mysqld.sock
+bind_address= 0.0.0.0
+port = 3306
+user = mysql
+
+
+#socket = /run/mysqld/mysqld.sock
+#Purpose: This specifies the Unix socket file used for local connections. The socket file is used for more efficient communication between the MariaDB client and server when both are on the same machine/container.
+#Reason: Without this configuration, MariaDB may not properly set up the socket, which can cause issues when trying to connect locally from within the container using the mysql command line client. The socket file allows local communication, especially within the same container.
