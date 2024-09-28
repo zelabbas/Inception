@@ -15,7 +15,3 @@ RUN chmod +x /tmp/script.sh
 
 # Run the script at container startup
 ENTRYPOINT [ "/tmp/script.sh" ]
-
-# no need now 
-# # start the mysqld service
-# CMD [ "mysqld" ]

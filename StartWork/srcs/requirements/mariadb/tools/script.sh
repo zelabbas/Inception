@@ -1,22 +1,20 @@
 #!/bin/bash
 
-
-echo "hello\n"
 # Debugging output for environment variables
 echo "MYSQL_ROOTPASSWORD: $MYSQL_ROOTPASSWORD"
 echo "MYSQL_DATABASE: $MYSQL_DATABASE"
 echo "MYSQL_USER: $MYSQL_USER"
 echo "MYSQL_PASSWORD: $MYSQL_PASSWORD"
-
 # Debugging output for environment variables
 
 # Starting the MariaDB service
 service mariadb start;
 
+echo "start CREATE THE DATA BASES"
 
 # Create the database if it doesn't exist
 mysql -u root -p"$MYSQL_ROOTPASSWORD" -e "CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE;"
-
+echo "finish CREATE THE DATA BASES"
 # Create the user if it doesn't exist
 mysql -u root -p$MYSQL_ROOTPASSWORD -e "CREATE USER IF NOT EXISTS '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';"
 
@@ -32,6 +30,7 @@ mysql -u root -p$MYSQL_ROOTPASSWORD -e "ALTER USER 'root'@'localhost' IDENTIFIED
 # This shutdown happens to prevent MariaDB from continuing to run in the background unnecessarily during the setup phase.
 mysqladmin -u root -p$MYSQL_ROOTPASSWORD shutdown
 
+echo "done ✅"
 # Start MariaDB daemon in the foreground to keep the container running
 exec mysqld_safe
 

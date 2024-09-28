@@ -10,7 +10,7 @@ services:
     restart: always
     volumes:
       - mariadb_volume:/var/lib/mysql
-    ports:
+    expose:
       - '3306'
     networks:
       - my_network
