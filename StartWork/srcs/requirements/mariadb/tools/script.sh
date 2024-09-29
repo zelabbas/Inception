@@ -30,7 +30,7 @@ mysql -e "GRANT ALL PRIVILEGES ON $MYSQL_DATABASE.* TO '$MYSQL_USER'@'%';"
 mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOTPASSWORD}';"
 
 # Reload the grant tables to update its internal data structures with the current contents
-mysql -e "FLUSH PRIVILEGES;"
+mysql -u root -p$MYSQL_ROOTPASSWORD -e "FLUSH PRIVILEGES;"
 
 # This shutdown happens to prevent MariaDB from continuing to run in the background unnecessarily during the setup phase.
 mysqladmin -u root -p$MYSQL_ROOTPASSWORD shutdown
@@ -38,15 +38,3 @@ mysqladmin -u root -p$MYSQL_ROOTPASSWORD shutdown
 echo "Database setup completed successfully! ✅"
 # Start MariaDB daemon in the foreground to keep the container running
 exec mysqld_safe
-
-# The output you provided indicates that MariaDB is expecting to use the Unix socket located at /run/mysqld/mysqld.sock, but the socket file does not exist (No such file or directory). This suggests that MariaDB did not start successfully or the socket file was not created.
-
-# Steps to resolve the issue:
-# 1. Ensure the /run/mysqld directory exists:
-# Run the following command to ensure that the required directory exists and has the correct permissions:
-# ======> mariadb --help to show all info about mariadb 
-# bash
-# Copy code
-# mkdir -p /run/mysqld
-# chown -R mysql:mysql /run/mysqld
-# This command will create the directory if it doesn't exist and ensure it is owned by the mysql user, which is necessary for MariaDB to create the socket file.
