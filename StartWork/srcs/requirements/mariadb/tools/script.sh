@@ -10,21 +10,24 @@ echo "MYSQL_PASSWORD: $MYSQL_PASSWORD"
 # Starting the MariaDB service
 service mariadb start;
 
+# Wait for MariaDB to fully start
+sleep 10
+
 echo "Start creating the databases..."
 
 # Create the database if it doesn't exist
-mysql -u root -p"$MYSQL_ROOTPASSWORD" -e "CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE;"
+mysql -e "CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE;"
 
 echo "Finish creating the database."
 
 # Create the user if it doesn't exist
-mysql -u root -p$MYSQL_ROOTPASSWORD -e "CREATE USER IF NOT EXISTS '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';"
+mysql -e "CREATE USER IF NOT EXISTS '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';"
 
 # Grant all privileges on the created database to the user
-mysql -u root -p$MYSQL_ROOTPASSWORD -e "GRANT ALL PRIVILEGES ON $MYSQL_DATABASE.* TO '$MYSQL_USER'@'%';"
+mysql -e "GRANT ALL PRIVILEGES ON $MYSQL_DATABASE.* TO '$MYSQL_USER'@'%';"
 
 # set the password for the root user of the MariaDB/MySQL server
-mysql -u root -p$MYSQL_ROOTPASSWORD -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$MYSQL_ROOTPASSWORD';"
+mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQLROOTPASSWORD}';"
 
 # Reload the grant tables to update its internal data structures with the current contents
 mysql -u root -p$MYSQL_ROOTPASSWORD -e "FLUSH PRIVILEGES;"
