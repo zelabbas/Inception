@@ -34,3 +34,11 @@
         2. Volumes can store deffrent data from deffrent containers in the same time
     - Bind Mounting
         1. Bind Mounting may be stored anywhere on the host system
+
+# SSL - TLS
+    We use it to Establishing encrypted Connection between a client and server
+    # SSL : Secure Sockets layer
+    # TLS : Transport layer security 
+
+    SSL >>>>>> update to >> TLS 
+    # CSR : certaficate signing request
