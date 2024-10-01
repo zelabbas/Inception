@@ -1,6 +1,21 @@
 version: '3'
 
 services:
+
+  nginx:
+    build: ./requirements/nginx
+    image: nginx:latestinception
+    container_name: nginx
+    env_file:
+      - .env
+    restart: on-failure
+    ports:
+      - '443:443'
+    volumes:
+      - wp_data:/var/www/html/
+    networks:
+      - my_network
+
   mariadb:
     build: ./requirements/mariadb
     image: mariadb:latestinception
@@ -9,20 +24,32 @@ services:
       - .env
     restart: always
     volumes:
-      - mariadb_volume:/var/lib/mysql
-    expose:
-      - '3306'
+      - mariadb_db:/var/lib/mysql
+    ports:
+      - '3306:3306'
     networks:
       - my_network
 
 volumes:
-  mariadb_volume:
+  mariadb_db:
     driver: local
     driver_opts:
         device: /Users/zelabbas/Desktop/data_base
         type: none
         o: bind
+  wp_data:
+    driver: local
+    driver_opts: 
+      device: /Users/zelabbas/Desktop/wp_files
+      type: none
+      o: bind
 
 networks:
   my_network:
     driver: bridge
+
+
+
+# o: The o option is used to set additional options. 
+# In your case, bind indicates that you're creating a bind mount, 
+# which allows you to link a directory on the host filesystem directly to a container.
