@@ -24,12 +24,11 @@ COPY ./tools/script.sh /tmp/script.sh
 #change script.sh permession to excute 
 RUN chmod +x /tmp/script.sh
 
-CMD ["cat", "/tmp/script.sh"]
-
 #RUN the script inside the container
 ENTRYPOINT [ "/tmp/script.sh" ]
 
 # Start Nginx in the foreground when the container starts
+# CMD ["nginx", "-g", "daemon off;"]
 
 # This flag tells OpenSSL not to encrypt the private key with a passphrase.
 # nodes stands for "no DES (Data Encryption Standard)"
