@@ -25,10 +25,27 @@ services:
     restart: always
     volumes:
       - mariadb_db:/var/lib/mysql
-    ports:
-      - '3306:3306'
+    expose:
+      - '3306'
     networks:
       - my_network
+    
+  wordpress:
+    build: ./requirements/wordpress
+    image: wordpress:latestinception
+    depends_on:
+      - nginx
+      - mariadb
+    container_name: wordpress
+    env_file:
+      - .env
+    restart: always
+    volumes:
+      - wp_data:/var/www/html/
+    expose:
+      - '9000'
+    networks:
+     - my_network
 
 volumes:
   mariadb_db:
@@ -47,8 +64,6 @@ volumes:
 networks:
   my_network:
     driver: bridge
-
-
 
 # o: The o option is used to set additional options. 
 # In your case, bind indicates that you're creating a bind mount, 
