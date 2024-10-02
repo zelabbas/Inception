@@ -10,19 +10,17 @@ echo "server {
     index index.php index.html index.htm index.nginx-debian.html;
 
     # SSL certificate paths
-    ssl_certificate  /etc/nginx/ssl/certificate.crt;
-    ssl_certificate_key /etc/nginx/ssl/private.key;
+    ssl_certificate  $_CERT;
+    ssl_certificate_key $_KEY;
     ssl_protocols       TLSv1.2;
 " > /etc/nginx/sites-enabled/default
 
 echo "    # PHP handling through FastCGI
     location ~ \.php$ {
-		#fastcgi_pass wordpress:9000;
+		fastcgi_pass wordpress:9000;
         include snippets/fastcgi-php.conf;
     }
 }" >> /etc/nginx/sites-enabled/default
 
 # Start Nginx in the foreground when the container starts
 exec nginx -g "daemon off;"
-
-echo "all good ✅"
