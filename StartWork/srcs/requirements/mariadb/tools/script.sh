@@ -11,7 +11,7 @@ echo "MYSQL_PASSWORD: $MYSQL_PASSWORD"
 service mariadb start;
 
 # Wait for MariaDB to fully start
-sleep 10
+sleep 5
 
 echo "Start creating the databases..."
 
