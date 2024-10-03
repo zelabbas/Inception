@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SSL Configuration
+#SSL Configuration
 echo "server {
     listen 443 ssl;
     server_name localhost;
