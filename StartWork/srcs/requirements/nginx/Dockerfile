@@ -24,6 +24,7 @@ COPY ./tools/script.sh /tmp/script.sh
 #change script.sh permession to excute 
 RUN chmod +x /tmp/script.sh
 
+
 #RUN the script inside the container
 ENTRYPOINT [ "/tmp/script.sh" ]
 

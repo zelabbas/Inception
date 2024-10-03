@@ -2,20 +2,6 @@ version: '3'
 
 services:
 
-  nginx:
-    build: ./requirements/nginx
-    image: nginx:latestinception
-    container_name: nginx
-    env_file:
-      - .env
-    restart: on-failure
-    ports:
-      - '443:443'
-    volumes:
-      - wp_data:/var/www/html/
-    networks:
-      - my_network
-
   mariadb:
     build: ./requirements/mariadb
     image: mariadb:latestinception
@@ -29,19 +15,34 @@ services:
       - '3306'
     networks:
       - my_network
+
+  nginx:
+    build: ./requirements/nginx
+    image: nginx:latestinception
+    container_name: nginx
+    env_file:
+      - .env
+    depends_on:
+      - wordpress
+    restart: always
+    ports:
+      - '443:443'
+    volumes:
+      - wp_data:/var/www/html
+    networks:
+      - my_network
     
   wordpress:
     build: ./requirements/wordpress
     image: wordpress:latestinception
     depends_on:
-      - nginx
       - mariadb
     container_name: wordpress
     env_file:
       - .env
     restart: always
     volumes:
-      - wp_data:/var/www/html/
+      - wp_data:/var/www/html
     expose:
       - '9000'
     networks:
