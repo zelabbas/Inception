@@ -7,15 +7,18 @@ wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
 
 cd /var/www/html
 
-# chmod 755 /var/www/html
-
-# chown -R www-data:www-data /var/www/html
-
 # sleep to wait mariadb 
 sleep 10
 
 # download the wordpress core
 wp core download --allow-root
+
+
+chmod 755 /var/www/html/
+
+# Web Server User:
+# www-data is the default user and group used by web servers like NGINX and Apache. This allows the web server to access and serve files from the WordPress directory.
+chown -R www-data:www-data /var/www/html/
 
 wp core config --dbname=$MYSQL_DATABASE --dbuser=$MYSQL_USER --dbpass=$MYSQL_PASSWORD --dbhost=$HOST --allow-root
 wp core install --url=$DOMAIN_NAME --title=$WP_TITLE --admin_user=$ADMIN_USER --admin_password=$ADMIN_PASSWORD --admin_email=$ADMIN_EMAIL --allow-root
