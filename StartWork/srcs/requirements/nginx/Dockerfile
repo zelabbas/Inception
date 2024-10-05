@@ -2,7 +2,7 @@
 FROM debian:bookworm
 
 # Update the package list and install Nginx and OpenSSL
-RUN apt update && apt install -y nginx openssl
+RUN apt update && apt upgrade && apt install -y nginx openssl
 
 # Create a folder to store the certificate and key
 RUN mkdir -p /etc/nginx/ssl
