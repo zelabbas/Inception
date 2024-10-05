@@ -48,6 +48,16 @@ services:
     networks:
      - my_network
 
+  static-web-site:
+    build: ./requirements/bonus/static-web-site
+    image: web-site:my_site
+    container_name: static_site
+    restart: always
+    expose:
+      - "80:80"
+    networks:
+      - my_network
+
 volumes:
   mariadb_db:
     driver: local
