@@ -52,13 +52,13 @@ volumes:
   mariadb_db:
     driver: local
     driver_opts:
-        device: /Users/zelabbas/Desktop/data_base
+        device: /home/zelabbas/Desktop/data_base
         type: none
         o: bind
   wp_data:
     driver: local
     driver_opts: 
-      device: /Users/zelabbas/Desktop/wp_files
+      device: /home/zelabbas/Desktop/wp_files
       type: none
       o: bind
 
