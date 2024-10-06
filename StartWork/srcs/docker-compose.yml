@@ -53,7 +53,7 @@ services:
     image: web-site:my_site
     container_name: static_site
     restart: always
-    expose:
+    ports:
       - "80:80"
     networks:
       - my_network

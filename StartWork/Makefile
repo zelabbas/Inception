@@ -2,8 +2,7 @@
 DOCKER_COMPOSE_PATH = ./srcs/docker-compose.yml
 
 # Default rule: Build and start the services
-all: makedir 
-	 up
+all: makedir up
 
 # Build services
 build:
