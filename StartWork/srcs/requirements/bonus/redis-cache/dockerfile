@@ -1,0 +1,20 @@
+# Base image: Debian 12 (Bookworm)
+FROM debian:bookworm
+
+# update packeges 
+RUN apt update && apt upgrade
+
+# install redis and php-redise
+# The redis-server package provides Redis itself,
+# while the php5-redis package provides a PHP extension for PHP applications like WordPress to communicate with Redis.
+RUN apt install -y redis-server && apt install -y php-redis
+
+#copy the script into the container
+COPY ./tools/script.sh /tmp/script.sh
+
+# change permession for the script
+RUN  chmod +x /tmp/script.sh
+
+# run the script when the container start
+ENTRYPOINT [ "/tmp/script.sh" ]
+
