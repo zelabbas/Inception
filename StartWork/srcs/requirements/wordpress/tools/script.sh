@@ -13,7 +13,6 @@ sleep 10
 # download the wordpress core
 wp core download --allow-root
 
-
 chmod 755 /var/www/html/
 
 # Web Server User:
@@ -32,11 +31,13 @@ wp plugin install redis-cache --activate --allow-root
 
 sleep 10
 
-# # Configure wp-config.php for Redis
+# Configure wp-config.php for Redis
 # set Hostname of redis container
 wp config set WP_REDIS_HOST 'redis' --allow-root
+
 # This constant controls whether caching is enabled in WordPress or not.
 wp config set WP_CACHE 'true' --allow-root
+
 # set The Port of Redis, This command is also assuming that Redis is running and listen on port 6379
 wp config set WP_REDIS_PORT '6379' --allow-root
 
