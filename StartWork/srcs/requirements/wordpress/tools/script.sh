@@ -28,18 +28,20 @@ wp user create $WP_USER $WP_USER_EMAIL --user_pass=$WP_USER_PASSWORD --role=$WP_
 sed -i 's@/run/php/php8.2-fpm.sock@9000@g' /etc/php/8.2/fpm/pool.d/www.conf
 
 # # Install and activate Redis Object Cache plugin
-# wp plugin install redis-cache --activate --allow-root
+wp plugin install redis-cache --activate --allow-root
+
+sleep 10
 
 # # Configure wp-config.php for Redis
 # set Hostname of redis container
-# echo "define('WP_REDIS_HOST', 'redis');" >> wp-config.php
+wp config set WP_REDIS_HOST 'redis' --allow-root
 # This constant controls whether caching is enabled in WordPress or not.
-# echo "define('WP_CACHE', true);" >> wp-config.php
+wp config set WP_CACHE 'true' --allow-root
 # set The Port of Redis, This command is also assuming that Redis is running and listen on port 6379
-# echo "define('WP_REDIS_PORT', 6379);" >> wp-config.php
+wp config set WP_REDIS_PORT '6379' --allow-root
 
 # # Enable Redis Cache
-# wp redis enable --allow-root
+wp redis enable --allow-root
 
 # Start PHP-FPM in the foreground
 php-fpm8.2 -F

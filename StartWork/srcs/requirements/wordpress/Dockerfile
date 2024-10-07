@@ -9,7 +9,7 @@ RUN apt -y install wget
 
 # php-fpm: FastCGI Process Manager
 # # Install PHP 7.4, php-fpm, and php-mysql
-RUN apt install -y php php-fpm php-mysql
+RUN apt install -y php php-fpm php-mysql php-redis
 
 # Create the /run/php/ directory to store session data, temporary files.
 RUN mkdir -p /run/php/

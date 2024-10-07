@@ -54,7 +54,16 @@ services:
     container_name: static_site
     restart: always
     ports:
-      - "80:80"
+      - "3000:80"
+    networks:
+      - my_network
+  redis:
+    build: ./requirements/bonus/redis-cache
+    image: redis:inception
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"
     networks:
       - my_network
 
