@@ -54,9 +54,10 @@ services:
     container_name: static_site
     restart: always
     ports:
-      - "3000:80"
+      - "80:80"
     networks:
       - my_network
+
   redis:
     build: ./requirements/bonus/redis-cache
     image: redis:inception
@@ -71,7 +72,7 @@ services:
     build: ./requirements/bonus/adminer
     image: adminer:inception
     container_name: adminer
-    resart: always
+    restart: always
     ports:
       - "8080:8080"
     networks:
