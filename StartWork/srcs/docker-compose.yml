@@ -77,6 +77,22 @@ services:
       - "8080:8080"
     networks:
       - my_network
+    
+  ftp:
+    build: ./requirements/bonus/adminer
+    image: adminer:inception
+    container_name: adminer
+    env_file:
+      - .env
+    volumes:
+      - wp_data:/home/zakaria/ftp
+    restart: always
+    ports:
+      - "21:21"
+      - "20:20"
+      - "40011-40020:40011-40020"
+    networks:
+      - my_network
 
 volumes:
   mariadb_db:
