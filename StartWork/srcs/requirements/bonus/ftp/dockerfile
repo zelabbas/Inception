@@ -1,0 +1,17 @@
+# Base image: Debian 12 (Bookworm)
+FROM debian:bookworm
+
+# Update packages
+RUN apt update && apt upgrade -y
+
+# Install vsftpd (Very Secure FTP Daemon)
+RUN apt install -y vsftpd
+
+# Copy the script into the container
+COPY ./tools/script.sh /tmp/script.sh
+
+# Change the permissions for the script.sh
+RUN chmod +x /tmp/script.sh
+
+# Run the script inside the container
+ENTRYPOINT [ "/tmp/script.sh" ]
