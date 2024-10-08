@@ -82,6 +82,8 @@ services:
     build: ./requirements/bonus/adminer
     image: adminer:inception
     container_name: adminer
+    depends_on:
+      - wordpress
     env_file:
       - .env
     volumes:
