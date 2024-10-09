@@ -79,9 +79,9 @@ services:
       - my_network
     
   ftp:
-    build: ./requirements/bonus/adminer
-    image: adminer:inception
-    container_name: adminer
+    build: ./requirements/bonus/ftp
+    image: ftp:inception
+    container_name: ftp
     depends_on:
       - wordpress
     env_file:
