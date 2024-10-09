@@ -54,7 +54,7 @@ services:
     container_name: static_site
     restart: always
     ports:
-      - "80:80"
+      - "1025:80"
     networks:
       - my_network
 

@@ -1,15 +1,16 @@
-# Base image: Debian 12 (Bookworm)
 FROM debian:bookworm
 
-# Update packages and install necessary dependencies
+# Install curl to fetch Portainer
 RUN apt update && apt install -y curl
 
-# Install Portainer
-RUN curl -L https://github.com/portainer/portainer/releases/download/2.19.1/portainer -o /usr/local/bin/portainer && \
-    chmod +x /usr/local/bin/portainer
+# Download the correct Portainer binary (replace the version with the latest one if needed)
+RUN curl -L https://github.com/portainer/portainer/releases/download/2.18.4/portainer-2.18.4-linux-amd64.tar.gz -o /tmp/portainer.tar.gz \
+    && tar xzf /tmp/portainer.tar.gz -C /usr/local/bin/ \
+    && rm /tmp/portainer.tar.gz
 
-# Expose Portainer's web interface
-EXPOSE 9000
+# Ensure the binary has the correct permissions
+RUN chmod +x /usr/local/bin/portainer
 
-# Run Portainer
-CMD ["portainer", "--no-auth", "-H", "unix:///var/run/docker.sock"]
+
+# Start Portainer
+CMD ["/usr/local/bin/portainer/portainer", "-H", "unix:///var/run/docker.sock"]

@@ -9,7 +9,7 @@ RUN apt update && \
 # Delete all files 
 RUN rm -rf /var/www/html/*
 
-COPY ./conf/nginx.conf /etc/nginx/sites-enabled/default
+COPY ./conf/nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copy the entire static website
 COPY ./tools/ /var/www/html/

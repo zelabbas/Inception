@@ -17,6 +17,11 @@ makedir:
 	mkdir -p /home/zelabbas/Desktop/data_base
 	mkdir -p /home/zelabbas/Desktop/wp_files
 
+# delete folders
+deletedir:
+	rm -rf /home/zelabbas/Desktop/data_base
+	rm -rf /home/zelabbas/Desktop/wp_files
+
 # Stop services
 down:
 	docker-compose -f $(DOCKER_COMPOSE_PATH) down
@@ -27,7 +32,7 @@ restart:
 	docker-compose -f $(DOCKER_COMPOSE_PATH) up -d
 
 # Clean up volumes and containers
-clean:
+clean: deletedir
 	docker-compose -f $(DOCKER_COMPOSE_PATH) down -v --rmi all
 
 # Rebuild everything from scratch
