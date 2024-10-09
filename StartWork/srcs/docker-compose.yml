@@ -4,7 +4,7 @@ services:
 
   mariadb:
     build: ./requirements/mariadb
-    image: mariadb:latestinception
+    image: mariadb:inception
     container_name: mariadb
     env_file:
       - .env
@@ -18,7 +18,7 @@ services:
 
   nginx:
     build: ./requirements/nginx
-    image: nginx:latestinception
+    image: nginx:inception
     container_name: nginx
     env_file:
       - .env
@@ -34,7 +34,7 @@ services:
     
   wordpress:
     build: ./requirements/wordpress
-    image: wordpress:latestinception
+    image: wordpress:inception
     depends_on:
       - mariadb
     container_name: wordpress
@@ -50,7 +50,7 @@ services:
 
   static-web-site:
     build: ./requirements/bonus/static-web-site
-    image: web-site:my_site
+    image: static-web-site:inception
     container_name: static_site
     restart: always
     ports:
@@ -93,6 +93,17 @@ services:
       - "21:21"
       - "20:20"
       - "40011-40020:40011-40020"
+    networks:
+      - my_network
+  
+  portainer:
+    build: ./requirements/bonus/portainer
+    image: portainer:inception
+    container_name: portainer
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "9001:9000"
     networks:
       - my_network
 
