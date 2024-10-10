@@ -14,9 +14,10 @@ mkdir -p /home/$FTP_USER/ftp
 
 # Set the ownership of the FTP directory to the new user
 chown -R $FTP_USER:$FTP_USER /home/$FTP_USER/ftp
+chmod -R 775 /home/$FTP_USER/ftp
 
 # Remove write permissions on the FTP directory for security reasons
-chmod a-w /home/$FTP_USER/ftp
+#chmod a-w /home/$FTP_USER/ftp
 
 # Configure vsftpd settings for secure FTP access
 

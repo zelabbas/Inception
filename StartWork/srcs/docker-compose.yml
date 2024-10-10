@@ -51,7 +51,7 @@ services:
   static-web-site:
     build: ./requirements/bonus/static-web-site
     image: static-web-site:inception
-    container_name: static_site
+    container_name: static-web-site
     restart: always
     ports:
       - "1025:80"

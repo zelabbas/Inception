@@ -13,7 +13,7 @@ sleep 10
 # download the wordpress core
 wp core download --allow-root
 
-chmod 755 /var/www/html/
+chmod -R 775 /var/www/html/wp-content
 
 # Web Server User:
 # www-data is the default user and group used by web servers like NGINX and Apache. This allows the web server to access and serve files from the WordPress directory.
