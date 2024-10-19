@@ -226,3 +226,5 @@ FastCGI: https://www.digitalocean.com/community/tutorials/understanding-and-impl
 redis : https://architecturenotes.co/p/redis \
  https://www.digitalocean.com/community/tutorials/how-to-configure-redis-caching-to-speed-up-wordpress-on-ubuntu-14-04 \
 ftp : https://docs.openeuler.org/en/docs/22.03_LTS/docs/Administration/configuring-the-ftp-server.html
+
+#### this link containe some resources usefl to help you understanding docker and tls ... : https://www.one-tab.com/page/z4g_bNlpQNyUhg6Azcbz_Q
