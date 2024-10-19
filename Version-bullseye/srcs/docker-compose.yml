@@ -1,0 +1,132 @@
+version: '3'
+
+services:
+
+  mariadb:
+    build: ./requirements/mariadb
+    image: mariadb:inception
+    container_name: mariadb
+    env_file:
+      - .env
+    restart: always
+    volumes:
+      - mariadb_db:/var/lib/mysql
+    expose:
+      - '3306'
+    networks:
+      - my_network
+
+  nginx:
+    build: ./requirements/nginx
+    image: nginx:inception
+    container_name: nginx
+    env_file:
+      - .env
+    depends_on:
+      - wordpress
+    restart: always
+    ports:
+      - '443:443'
+    volumes:
+      - wp_data:/var/www/html
+    networks:
+      - my_network
+    
+  wordpress:
+    build: ./requirements/wordpress
+    image: wordpress:inception
+    depends_on:
+      - mariadb
+    container_name: wordpress
+    env_file:
+      - .env
+    restart: always
+    volumes:
+      - wp_data:/var/www/html
+    expose:
+      - '9000'
+    networks:
+     - my_network
+
+  static-web-site:
+    build: ./requirements/bonus/static-web-site
+    image: static-web-site:inception
+    container_name: static-web-site
+    restart: always
+    ports:
+      - "1025:80"
+    networks:
+      - my_network
+
+  redis:
+    build: ./requirements/bonus/redis-cache
+    image: redis:inception
+    container_name: redis
+    restart: always
+    depends_on:
+      - wordpress
+    ports:
+      - "6379:6379"
+    networks:
+      - my_network
+
+  adminer:
+    build: ./requirements/bonus/adminer
+    image: adminer:inception
+    container_name: adminer
+    restart: always
+    depends_on:
+      - mariadb
+    ports:
+      - "8080:8080"
+    networks:
+      - my_network
+    
+  ftp:
+    build: ./requirements/bonus/ftp
+    image: ftp:inception
+    container_name: ftp
+    depends_on:
+      - wordpress
+    env_file:
+      - .env
+    volumes:
+      - wp_data:/home/zelabbas/ftp
+    restart: always
+    ports:
+      - "21:21"
+      - "20:20"
+      - "40011-40020:40011-40020"
+    networks:
+      - my_network
+  
+  portainer:
+    build: ./requirements/bonus/portainer
+    image: portainer:inception
+    container_name: portainer
+    env_file:
+      - .env
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "9001:9000"
+    networks:
+      - my_network
+
+volumes:
+  mariadb_db:
+    driver: local
+    driver_opts:
+        device: /home/zelabbas/Desktop/data_base
+        type: none
+        o: bind
+  wp_data:
+    driver: local
+    driver_opts: 
+      device: /home/zelabbas/Desktop/wp_files
+      type: none
+      o: bind
+
+networks:
+  my_network:
+    driver: bridge
