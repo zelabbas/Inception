@@ -7,7 +7,7 @@ bullseye
 
 # what is Docker
 
-    discription:
+    Description:
         Docker is an open source standlone application which works as an engine used to run containerized applications
         , it is insstalled on your operating system preferavbly on linux but can be also insttalled on windows and macos
 
@@ -58,17 +58,17 @@ APIs which specify interfaces that programs can use to talk to and instruct the 
 
 # Img
 
-    discription :
+    Description :
     	imge is a read-olny template with instructions for creating a Docker container (for example: windows system)
 
 # Container
 
-    discription :
+    Description :
     	a container is a runnable instance of an image (commands used: start, stop, move, delete)
 
 # Registry
 
-    discription :
+    Description :
     	Registry is Docker Hub (contain all imges from each company)
     there's two types :
     	1 public like Docker Hub
@@ -76,13 +76,13 @@ APIs which specify interfaces that programs can use to talk to and instruct the 
 
 # client
 
-    discription:
+    Description:
     	the Docker client is the primary way that many Docker users interact with Docker ,
     	when you use commands such as "docker run" the client sends these commands to dockerd
 
 # Docker daemon
 
-    discription:
+    Description:
     	the Docker daemon listens for Docker API requests and manages Docker objects sush as images containers networks and volums.
 
 # NameSpace
