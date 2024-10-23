@@ -5,6 +5,23 @@ before start: if the *trixie* new version fo debain is published so you should u
 bullseye
 ```
 
+# How to Install Docker and Docker Compose on Kali Linux:
+
+    - To check if docker is already installed
+    	docker —-version
+
+    - Docker version 19 and up should be okay
+
+    	sudo apt install docker.io
+
+    - Install Docker Compose
+
+    	sudo apt install docker-compose
+
+    - To check if docker-compose version/is already installed
+
+    	docker-compose —-version
+
 # what is Docker
 
     Description:
