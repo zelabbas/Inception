@@ -1,7 +1,7 @@
 ### NOTE :
 
 ```
-before start: if the *trixie* new version fo debain is published so you should use version-bookworm else use version
+before start: if the *trixie* new version of debain is published so you should use version-bookworm else use version
 bullseye
 ```
 
